@@ -1,8 +1,10 @@
 
 <?php
 
+echo"<h2>Ejercicio 3</h2>";
+echo "<br>";
+echo "<br>";
 
-/** 
 $nombre = $_POST['nombre'];
 $edad = (int)$_POST['edad'];
 
@@ -18,7 +20,13 @@ $edad = (int)$_POST['edad'];
         echo "$nombre es adulto.";
     }
 
-    */
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "<h2>Ejercicio 4</h2>";
+
+    echo "<br>";
+    echo "<br>";
 
     $num = $_POST['num'];
     $frase = $_POST['frase'];

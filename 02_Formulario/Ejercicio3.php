@@ -1,6 +1,8 @@
 <h1>Ejercicio 3</h1>
 
- <!-- <form action="Respuesta_Ejer3.php" method="post">
+
+
+ <form action="Respuesta_Ejer3.php" method="post">
         <label>Introduce tu nombre: </label>
         <input type="text" name="nombre"></br>
         <label>Introduce tu edad: </label>
@@ -9,7 +11,9 @@
         <input type="submit" value="enviar">
 
     </form>
--->
+
+    <h1>Ejercicio 4</h1>
+
     <form action="Respuesta_Ejer3.php" method="post">
 
         <label>Introduce un numero entre 1 y 6: </label>
