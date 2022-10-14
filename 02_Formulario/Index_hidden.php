@@ -1,6 +1,6 @@
 <h1>Ejercicio 1</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Nombre </label>
     <input type="text" name="nombre">
@@ -13,7 +13,7 @@
 
 <h1>Ejercicio 2</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce un numero </label>
     <input type="number" name="num">
@@ -24,7 +24,7 @@
 
 <h1>Ejercicio 3</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce tu nombre: </label>
     <input type="text" name="nombre"></br>
@@ -37,7 +37,7 @@
 
 <h1>Ejercicio 4</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce un numero entre 1 y 6: </label>
     <input type="text" name="num" pattern="[1-6]"><br>
@@ -50,7 +50,7 @@
 
 <h1>Ejercicio 5</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce un numero: </label>
     <input type="text" name="num1" pattern="[0-9]+"><br>
@@ -63,7 +63,7 @@
 
 <h1>Ejercicio 6</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce un numero: </label>
     <input type="text" name="num3" pattern="[0-9]+">
@@ -74,7 +74,7 @@
 
 <h1>Ejercicio 7</h1>
 
-<form action="Index_hidden.php" method="post">
+<form action="#result" method="post">
 
     <label>Introduce un numero: </label>
     <input type="text" name="num4" pattern="[0-9]+">
@@ -82,6 +82,8 @@
     <input type="submit" value="enviar">
 
 </form>
+
+<h1 id="result">Resultado</h1>
 
 <?php
 
@@ -150,28 +152,27 @@
                 break;
 
             case "f_Ejer5":
-
+                
                 $base = $_POST['num1'];
                 $exponente = $_POST['num2'];
-                $auxiliar = 1;
+                require "Funciones/Funcion_potencia.php";
+                $resultado = potencia($base, $exponente);
 
-                for ($i = 0; $i<$exponente;$i++){
-
-                    $auxiliar *= $base;
-
-                }
-                echo "$auxiliar";
+                echo $resultado;
                 break;
 
             case "f_Ejer6":
 
-                $vectorial = $_POST['num3'];
-                $result = 1;
+                $factorial = $_POST['num3'];
+                require "Funciones/Funcion_factorial.php";
+                $resultado = factorial($factorial);
 
-                for($i=1;$i<=$vectorial;$i++){
-                    $result *= $i;
+                if($resultado == -1){
+                    echo "El numero no debe ser negativo.";
                 }
-                echo "$result";
+                else {
+                    echo "el factorial de $factorial es $resultado";
+                }
                 break;
 
             case "f_Ejer7":
@@ -201,3 +202,4 @@
     }
 
 ?>
+<p> <a href="Index_hidden.php">Recargar la pagina</a></p>

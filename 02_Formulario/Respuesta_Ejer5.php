@@ -70,6 +70,6 @@
     }
 
     }
-
+require "enlace.php";
     
 ?>

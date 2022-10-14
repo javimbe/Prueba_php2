@@ -51,5 +51,5 @@ $edad = (int)$_POST['edad'];
             echo "<h6> $frase </h6>";
             break;
     }
-
+    require "enlace.php";
 ?>

@@ -7,3 +7,8 @@
 <h2><a href="Ejercicio3.php">Ejercicio 3 y 4</a></h2>
 <p>Ejer3: Formulario que recibe un nombre y una edad, y muestra el nombre con la primera mayus y el resto minus, ademas indica si es menor de edad, mayor o jubilado.</p>
 <p>Ejer4: Formulario que recibe un numero y una frase, y convierte la frase al encabezado del numero indicado.</p>
+
+<h2><a href="Ejercicio5.php">Ejercicio 5, 6 y 7</a></h2>
+
+<h2><a href="Ejercicio7.php">Ejercicio 8</a></h2>
+

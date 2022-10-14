@@ -13,5 +13,5 @@
     for($i=0;$i<=$_POST['num'];$i++){
         echo "<li color:red> $i </li>";
     }
-
+    require "enlace.php";
 ?>
