@@ -1,0 +1,45 @@
+body{background-color: #a7b3b3;}
+div{background-color: #679B9B; border:solid #4e7c7c 7px; width:40%;}
+#body_Ejer3{background-color: #273444;}
+
+#div1{position:fixed; top:4%; left:2%; height:30%; text-align: center;}
+#div2{position:fixed; top:42.25%; left:2%; height:30%; text-align: center;}
+#div3{position:fixed; top:80%; left:2%; text-align: center;}
+#div4{position:fixed; top:42%; left:60%; width:35%; height:30%; text-align: center; font-size: large;}
+#div5{position:fixed; top:52.5%; left:65.5%; width:25%; height:16%; background-color: #a9dbe9; border:none;}
+#p1{font-size: 150%;}
+
+#div3 h1 a{color:#35359c;}
+
+
+
+
+table{border-radius:5px;text-align:center; width:10%;}
+
+#tabla1{position:fixed; top:5%; left: 18%; border: solid #ff7b00;}
+#tabla2{position:fixed; top:5%; left: 31%; border: solid #33bd5c;}
+#tabla3{position:fixed; top:5%; left: 44%; border: solid #7e7dba;}
+#tabla4{position:fixed; top:5%; left: 57%; border: solid #c29872;}
+#tabla5{position:fixed; top:5%; left: 70%; border: solid #dda3f8;}
+
+#tabla6{position:fixed; top:56%; left: 18%; border: solid #d9ff50;}
+#tabla7{position:fixed; top:56%; left: 31%; border: solid #dd5656;}
+#tabla8{position:fixed; top:56%; left: 44%; border: solid #e29ce9;}
+#tabla9{position:fixed; top:56%; left: 57%; border: solid #ff0055;}
+#tabla10{position:fixed; top:56%; left: 70%; border: solid #aac9dd;}
+
+#tabla1 tr{border:solid #ff7b00; background-color: #ff7b00;}
+#tabla2 tr{border:solid #33bd5c; background-color: #33bd5c;}
+#tabla3 tr{border:solid #7e7dba; background-color: #7e7dba;}
+#tabla4 tr{border:solid #c29872; background-color: #c29872;}
+#tabla5 tr{border:solid #dda3f8; background-color: #dda3f8;}
+#tabla6 tr{border:solid #d9ff50; background-color: #d9ff50;}
+#tabla7 tr{border:solid #dd5656; background-color: #dd5656;}
+#tabla8 tr{border:solid #e29ce9; background-color: #e29ce9;}
+#tabla9 tr{border:solid #ff0055; background-color: #ff0055;}
+#tabla10 tr{border:solid #aac9dd; background-color: #aac9dd;}
+
+#Enviar1:hover{background-color: lightblue;}
+#Enviar2:hover{background-color: lightblue;}
+#volver{width:10%; border-radius: 5px;}
+#volver:hover{background-color: lightblue;}

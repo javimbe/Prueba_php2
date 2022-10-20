@@ -20,8 +20,8 @@
 
         while($contador < $num1){
 
-            if ($sumatorio==$num2){
-                echo "$num2";
+            if ($sumatorio>=$num2){
+                echo "$num2 ";
                 $num2++;
                 $sumatorio = 2;
                 $contador++;
@@ -30,8 +30,9 @@
                 $num2++;
                 $sumatorio = 2;
             }
-
-            $sumatorio++;
+            else{
+                $sumatorio++;
+            }           
 
         }
 

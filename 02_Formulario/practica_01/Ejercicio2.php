@@ -1,8 +1,16 @@
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
 <form action="Ejercicio2.php" method="post">
 
     <label>Introduce tu DNI: </label>
     <input type="text" name="dni"><br>
-    <input type="submit">
+    <input type="submit" value="Enviar Consulta">
 
 </form>
 
@@ -60,3 +68,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 ?>
+
+</body>
+</html>
