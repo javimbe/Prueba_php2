@@ -66,6 +66,16 @@
     <?php if(isset($error_precio)) echo $error_precio ?>
     </span>
 
+    <p> Consola: 
+    <select>
+        <option disable selected hidden>Selecciona consola</option>
+        <option value="ps4">Ps4</option>
+        <option value="ps5">Ps5</option>
+        <option value="Switch">Switch</option>
+    </select>
+    </p>
+
     <p> <input type="submit" value="Enviar"> </p>
+
 
 </form>
