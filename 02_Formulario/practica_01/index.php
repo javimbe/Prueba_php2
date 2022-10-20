@@ -114,35 +114,44 @@
                     }
                     
                     else{
+
+                        $comprobacionDNI = $num_dni%23;
             
-                        $mensaje = match($letra_dni){
-                                        "T" => "DNI correcto",
-                                        "R" => "DNI correcto",
-                                        "W" => "DNI correcto",
-                                        "A" => "DNI correcto",
-                                        "G" => "DNI correcto",
-                                        "M" => "DNI correcto",
-                                        "Y" => "DNI correcto",
-                                        "F" => "DNI correcto",
-                                        "P" => "DNI correcto",
-                                        "D" => "DNI correcto",
-                                        "X" => "DNI correcto",
-                                        "B" => "DNI correcto",
-                                        "N" => "DNI correcto",
-                                        "J" => "DNI correcto",
-                                        "Z" => "DNI correcto",
-                                        "S" => "DNI correcto",
-                                        "Q" => "DNI correcto",
-                                        "V" => "DNI correcto",
-                                        "H" => "DNI correcto",
-                                        "L" => "DNI correcto",
-                                        "C" => "DNI correcto",
-                                        "K" => "DNI correcto",
-                                        "E" => "DNI correcto",
+                        $mensaje = match($comprobacionDNI){
+                                        0 => "T",
+                                        1 => "R",
+                                        2 => "W",
+                                        3 => "A",
+                                        4 => "G",
+                                        5 => "M",
+                                        6 => "Y",
+                                        7 => "F",
+                                        8 => "P",
+                                        9 => "D",
+                                        10 => "X",
+                                        11 => "B",
+                                        12 => "N",
+                                        13 => "J",
+                                        14 => "Z",
+                                        15 => "S",
+                                        16 => "Q",
+                                        17 => "V",
+                                        18 => "H",
+                                        19 => "L",
+                                        20 => "C",
+                                        21 => "K",
+                                        22 => "E",
                                         default => "DNI no valido",
             
                                      };
-                            echo "$mensaje";
+
+                                     if($letra_dni == $mensaje){
+                                        echo "El DNI es correcto.";
+                                     }
+                                     else{
+                                        echo "El DNI no es valido.";
+                                     }
+                            
             
                     
             
