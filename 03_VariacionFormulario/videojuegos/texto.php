@@ -11,9 +11,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $dni = $_POST['dni'];
+    $email = $_POST['email'];
+    $fecha_nac = $_POST['fecha_nac'];
 
     $nombre_depurado = depurar($nombre);
     $apellido_depurado = depurar($apellido);
+    $email_depurado = depurar($email);
+
+    $temp_email = filter_var($email_depurado, FILTER_VALIDATE_EMAIL);
+
+    $pattern_dni = "/^[0-9]{8}[a-zA-Z]{1}$/";
+    $pattern_fechaNac = "/^[0-3][0-9]\/[0-1][0-9]\/(19|20)[0-9]{2}$/";
 
 
 
@@ -61,18 +69,31 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         }
     }
 
-    if(strlen($dni)!=9){
-        $errorDNI = "El campo del DNI es incorrecto.";
-    }
-    else{
-        $pattern_dni = "/^[0-9]{8}[A-Z]{1}+$/";
-        
         if(preg_match($pattern_dni,$dni)){
             echo "DNI correcto";
         }
         else{
             $errorDNI = "El campo del dni es incorrecto.";
         }
+
+    if(empty($email)){
+        $errorEmail = "El email no puede estar vacío.";
+    }
+    else{
+        if($temp_email){
+            echo "El email es correcto";
+        }
+        else{
+            $errorEmail = "El email no es valido.";
+        }
+
+    }
+
+    if(preg_match($pattern_fechaNac, $fecha_nac)){
+        echo "$fecha_nac";
+    }
+    else{
+        $errorFechaNac = "La fecha introducida es incorrecta, el formato es dia/mes/año";
     }
 
     if(preg_match($pattern, $nombre)){
@@ -81,6 +102,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     else{
         echo "$nombre no sigue el patron";
     }
+
 }
 
 ?>
@@ -94,6 +116,12 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
     <p>DNI: <input type="text" name="dni"></p>
     <span> * <?php if(isset($errorDNI)) echo $errorDNI ?> </span>
+
+    <p>Email: <input type="text" name="email"></p>
+    <span> * <?php if(isset($errorEmail)) echo $errorEmail ?> </span>
+
+    <p>Fecha de nacimiento: <input type="text" name="fecha_nac"></p>
+    <span> * <?php if(isset($errorFechaNac)) echo $errorFechaNac ?> </span>
 
     <input type="submit" value="Enviar">
 </form>
