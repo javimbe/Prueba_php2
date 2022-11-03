@@ -14,34 +14,54 @@
     for($i = 0; $i < count($estudiantes);$i++){
 
         $estudiantes[$i][1] = rand(0,10);
+        $estudiantes[$i][2] = rand(0,10);
+        $estudiantes[$i][3] = rand(0,10);
 
     }
 
-    for($i = 0; $i < count($estudiantes);$i++){
+    function calificacion($nota1,$nota2,$nota3){
 
-        if($estudiantes[$i][1]<5){
+        $nota  = $nota1 + $nota2 + $nota3;
 
-            $estudiantes[$i][2] = "Suspenso";
-        }
-        else if($estudiantes[$i][1]<7){
+        $calificacion = match(TRUE){
 
-            $estudiantes[$i][2] = "Aprobado";
-        }
-        else if($estudiantes[$i][1]<9){
-            $estudiantes[$i][2] = "Notable";
-        }else{
-            $estudiantes[$i][2] = "Sobresaliente";
-        }
-        
+            $nota < 15 => "Suspenso",
+            $nota < 21 => "Aprobado",
+            $nota < 27 => "Notable",
+            default => "Sobresaliente"
+
+        };
+
+        return $calificacion;
 
     }
     
+    ?>
 
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Nota 1</th>
+            <th>Nota 2</th>
+            <th>Nota 3</th>
+            <th>Calificacion</th>
+        </tr>
+<?php
     foreach($estudiantes as $alumno){
 
-        [$nombre, $nota, $calificacion] = $alumno;
+        [$nombre, $nota1, $nota2, $nota3] = $alumno;
 
-        echo $nombre . " y su nota es: " . $nota . " y está: " . $calificacion . "<br>";
+?>  
+        <tr>
+            <td><?php echo $nombre; ?></td>
+            <td><?php echo $nota1; ?></td>
+            <td><?php echo $nota2; ?></td>
+            <td><?php echo $nota3; ?></td>
+            <td><?php echo calificacion($nota1, $nota2, $nota3); ?></td>
+        </tr>
+        <?php
     }
 
 ?>
+
+    </table>
