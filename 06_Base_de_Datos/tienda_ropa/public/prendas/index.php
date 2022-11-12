@@ -34,27 +34,54 @@
 
                         if(!isset($_POST["cantidad"])){
 
-                            $id = $_POST["id"];
+                            $id_delete = $_POST["id_delete"];
                             $imagenDelete = $_POST["imagenDelete"];
-                            $sql = "DELETE FROM prendas WHERE id=$id";
+                            $sql_delete = "DELETE FROM prendas WHERE id=$id_delete";
                             
-                            if($resultado = $conexion -> query($sql)){
+                            if($conexion -> query($sql_delete) == "TRUE"){
 
-
-
+                                unlink("../..$imagenDelete");
+                                ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Prenda Eliminada Correctamente.</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> 
+                                <?php
                             }
                             else{
-
-                                
+                                ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error al Eliminar.</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> 
+                                <?php
                             }
                             
-
-                            unlink("../..$imagenDelete");
-
                         }
                         else{
 
-                            echo "funciona";
+                            $id_producto = $_POST['id_producto'];
+                            $cantidad_producto = $_POST['cantidad'];
+                            $fecha_hoy = date("Y-m-d");
+                            $sql_comprar = "INSERT INTO clientes_prendas (cliente_id, prenda_id, cantidad, fecha)
+                                            VALUES ('2', '$id_producto' , '$cantidad_producto' , '$fecha_hoy')";
+
+                            if($conexion -> query($sql_comprar) == "TRUE"){
+                                ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Compra realizada con exito.</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> 
+                                <?php
+                            }
+                            else{
+                                ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error al Comprar.</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div> 
+                                <?php
+                            }
     
                         }
                     }
@@ -107,6 +134,7 @@
                                             echo "<br>";
                                             
                                         ?>
+                                        <input type="hidden" name="id_producto" value="<?php echo $id ?>">
                                         <button class="btn btn-success" type="submit">Comprar</button>
                                     </form> 
                                     <button class="btn btn-danger" onclick="cerrar('modal<?php echo $id?>')">Cerrar</button>
@@ -115,7 +143,7 @@
                             <td>
                                 <form action="" method="post">
                                     <button class="btn btn-danger" type="submit">Eliminar</button>
-                                    <input type="hidden" name="id" value="<?php echo $id?>">
+                                    <input type="hidden" name="id_delete" value="<?php echo $id ?>">
                                     <input type="hidden" name="imagenDelete" value="<?php echo $imagen ?>">
                                 </form>
                             </td>
