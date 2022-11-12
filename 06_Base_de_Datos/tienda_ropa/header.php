@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" href="http://localhost/06_Base_de_Datos/tienda_ropa/public/clientes/index.php">Clientes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/06_Base_de_Datos/tienda_ropa/public/compras/index.php">Compras</a>
+        </li>
       </ul>
     </div>
   </div>

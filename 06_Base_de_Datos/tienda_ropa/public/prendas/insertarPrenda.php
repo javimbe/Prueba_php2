@@ -40,25 +40,50 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if($conexion -> query($sql) == "TRUE"){
 
-            echo "<p> Prenda Insertada </p>";
+            ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Prenda Insertada Correctamente.</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+            <?php
 
             if(move_uploaded_file($file_temp_name, $path)){
-                echo "<p>Fichero movido con exito</p>";
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                 <strong>Fichero movido con exito.</strong>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> 
+                <?php
             }
             else{
         
-                echo "<p>No se ha podido mover el fichero</p>";
+                ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>ERROR:</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php
         
             }
 
         }
         else{
 
-            echo "<p>Error</p>";
+            ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>ERROR:</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
         }
     }
     else{
-        echo "<p>Error</p>";
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>ERROR:</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php
         
     }
 

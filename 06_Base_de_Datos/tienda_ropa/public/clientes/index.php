@@ -21,10 +21,28 @@
                         <th>Apellido 1</th>
                         <th>Apellido 2</th>
                         <th>Fecha Nacimiento</th>
+                        <th>Avatar</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody >
                 <?php
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                        $id = $_POST["id"];
+                        $imagenDelete = $_POST["avatar"];
+                        $sql = "DELETE FROM clientes WHERE id=" . $id;
+                        $conexion -> query($sql);
+
+                        if($imagenDelete !== "/resources/images/ropa.jpg"){
+
+                            unlink("../..$imagenDelete");
+
+                        }
+                        
+                    }
+
                     $sql = "SELECT * FROM clientes";
                     $resultado = $conexion -> query($sql);
 
@@ -36,6 +54,7 @@
                             $apellido1 = $fila["apellido1"];
                             $apellido2 = $fila["apellido2"];
                             $fechaNac = $fila["fecha_nacimiento"];
+                            $avatar = $fila['avatar'];
                 ?>
                         <tr>
                             <td><?php echo $usuario ?></td>
@@ -43,6 +62,25 @@
                             <td><?php echo $apellido1 ?></td>
                             <td><?php echo $apellido2 ?></td>
                             <td><?php echo $fechaNac ?></td>
+                            <td><img width="50" height="50" src="../..<?php echo $avatar ?>"></td>
+                            <td>
+                                <form action="modificarClientes.php" method="get">
+                                    <button type="submit" class="btn btn-success">Modificar</button>
+                                    <input type="hidden"name="id" value="<?php echo $fila['id']?>">
+                                    <input type="hidden"name="usuario" value="<?php echo $usuario ?>">
+                                    <input type="hidden"name="nombre" value="<?php echo $nombre ?>">
+                                    <input type="hidden"name="apellido1" value="<?php echo $apellido1 ?>">
+                                    <input type="hidden"name="apellido2" value="<?php echo $apellido2 ?>">
+                                    <input type="hidden"name="avatar" value="<?php echo $avatar ?>">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <input type="hidden"name="id" value="<?php echo $fila['id']?>">
+                                    <input type="hidden"name="avatar" value="<?php echo $avatar ?>">
+                                </form>
+                            </td>
                         </tr>
                         <?php
                         }

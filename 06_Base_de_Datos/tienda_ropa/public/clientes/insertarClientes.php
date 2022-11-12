@@ -17,13 +17,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $apellido2 = $_POST['apellido2'];
     $fechaNac = $_POST['fecha_nacimiento'];
     
+    $file_name = $_FILES['avatar']['name'];
+    $file_temp_name = $_FILES['avatar']['tmp_name'];
+    $path = "../../resources/images/clientes/" . $file_name;
+    
+    if(empty($file_name)){
+
+        $imagen = "/resources/images/ropa.jpg";
+
+    }
+    else{
+
+        $imagen = "/resources/images/clientes/" . $file_name;
+        
+
+    }
 
     if(!empty($usuario) && !empty($nombre) && !empty($apellido1) && !empty($fechaNac)){
 
         $apellido2 = !empty($apellido2) ? "'$apellido2'" : "NULL";
         
-        $sql = "INSERT INTO clientes (usuario, nombre, apellido1, apellido2, fecha_nacimiento)
-                VALUES ('$usuario', '$nombre', '$apellido1', '$apellido2', '$fechaNac')";
+        $sql = "INSERT INTO clientes (usuario, nombre, apellido1, apellido2, fecha_nacimiento, avatar)
+                VALUES ('$usuario', '$nombre', '$apellido1', $apellido2 , '$fechaNac', '$imagen')";
 
         if($conexion -> query($sql) == "TRUE"){
             ?>
@@ -32,6 +47,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>           
             <?php
+            if(!empty($file_temp_name)){
+
+            
+                if(move_uploaded_file($file_temp_name, $path)){
+                    ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Fichero movido con exito.</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div> 
+                    <?php
+                }
+                else{
+        
+                    ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>ERROR:</strong> 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <?php
+        
+                }
+            }
         }
         else{
             ?>
@@ -58,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     <div class="row">
         <div class="col-6">
-            <form action="" method="post">  
+            <form action="" method="post" enctype="multipart/form-data">  
                 <div class="form-group mb-3">
                     <label class="form-label">Nombre Usuario</label>
                     <input class="form-control" type="text" name="usuario">
@@ -80,9 +117,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <input class="form-control" type="date" name="fecha_nacimiento">
                 </div>
                 <div class="form-group mb-3">
+                    <label class="form-label">Avatar</label>
+                    <input class="form-control" type="file" name="avatar">
+                </div>
+                <div class="form-group mb-3">
                     <button class="btn btn-primary" type="submit">Crear</button>
                     <a class="btn btn-secondary" href="index.php">Listado Clientes</a>
                 </div>
+            
         </div>
     </div>
 
