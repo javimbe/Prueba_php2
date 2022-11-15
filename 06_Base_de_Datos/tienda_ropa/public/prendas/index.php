@@ -179,15 +179,22 @@
 </div>
 <script>
 
+    var modal = false;
+
 function abrir(id){
 
-    document.getElementById(id).show();
+    if(!modal){
+        document.getElementById(id).show();
+    }
+
+    modal = true;
 
 }
 
 function cerrar(id){
 
     document.getElementById(id).close();
+    modal = false;
 
 }
 
