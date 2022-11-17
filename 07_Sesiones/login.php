@@ -28,6 +28,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         while($fila = $resultado -> fetch_assoc()){
 
             $hash_contrasena = $fila['contrasena'];
+            $rol = $fila['rol'];
 
         }
 
@@ -35,7 +36,10 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
         if($acceso_valido == TRUE){
 
-            echo "<h2>Acceso valido</h2>";
+            session_start();
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['rol'] = $rol;
+            header("location: index.php");
 
         }
         else {
@@ -62,9 +66,11 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 <input class="form-control" type="password" name="contrasena">
             </div>
             <div class="form-group mb-3">
-                <button class="btn btn-primary" type="submit">Resgistrarse</button>
+                <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                <a href="registrarse.php" class="btn btn-primary">Registrarse</a>
             </div>
         </form>
+
     </div>
 </div>
 </body>

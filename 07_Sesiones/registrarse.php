@@ -17,15 +17,17 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
     $nombre = $_POST['nombre'];
+    $rol = $_POST['rol'];
 
     $hash_contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO usuarios (usuario, contrasena, nombre)
-            VALUES ('$usuario', '$hash_contrasena', '$nombre')";
+    $sql = "INSERT INTO usuarios (usuario, contrasena, nombre, rol)
+            VALUES ('$usuario', '$hash_contrasena', '$nombre', '$rol')";
     
     if($conexion -> query($sql) == "TRUE"){
 
         echo "Usuario Insertado";
+        header("location: login.php");
     }
     else{
 
@@ -55,7 +57,15 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
                 <input class="form-control" type="text" name="nombre">
             </div>
             <div class="form-group mb-3">
+                <select class="form-select" name="rol">
+                    <option value="" selected disable hidden>---Elige rol---</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="usuario">Usuario</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
                 <button class="btn btn-primary" type="submit">Resgistrarse</button>
+                <a href="login.php" class="btn btn-primary">Volver</a>
             </div>
         </form>
     </div>
