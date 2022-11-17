@@ -5,6 +5,9 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<?php 
+require "../../util/sesion.php";
+?>
 <?php require '../../util/database.php' ?>
 
 <div class="container">
@@ -65,7 +68,9 @@
                             <td><img width="50" height="50" src="../..<?php echo $avatar ?>"></td>
                             <td>
                                 <form action="modificarClientes.php" method="get">
+                                    <?php if($_SESSION['rol'] == "administrador"){ ?>
                                     <button type="submit" class="btn btn-success">Modificar</button>
+                                    <?php } ?>
                                     <input type="hidden"name="id" value="<?php echo $fila['id']?>">
                                     <input type="hidden"name="usuario" value="<?php echo $usuario ?>">
                                     <input type="hidden"name="nombre" value="<?php echo $nombre ?>">
@@ -76,7 +81,9 @@
                             </td>
                             <td>
                                 <form action="" method="post">
+                                    <?php if($_SESSION['rol'] == "administrador"){ ?>
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <?php } ?>
                                     <input type="hidden"name="id" value="<?php echo $fila['id']?>">
                                     <input type="hidden"name="avatar" value="<?php echo $avatar ?>">
                                 </form>
@@ -91,7 +98,9 @@
                 </tbody>
             </table>
             <br>
+            <?php if($_SESSION['rol'] == "administrador"){ ?>
             <a class="btn btn-secondary" href="insertarClientes.php">Insertar Clientes</a>
+            <?php } ?>
         </div>
     </div>
 </div>

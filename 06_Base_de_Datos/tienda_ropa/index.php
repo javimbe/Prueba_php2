@@ -8,7 +8,71 @@
 <div class="Container">
 
     <?php require "header.php" ?>
+    <?php require "util/database.php" ?>
+
+    <?php
+
+if($_SERVER['REQUEST_METHOD']=="POST"){
+
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+
+    $sql = "SELECT * FROM clientes WHERE usuario = '$usuario'";
+    $resultado = $conexion -> query($sql);
+
+    if($resultado -> num_rows > 0){
+
+
+        while($fila = $resultado -> fetch_assoc()){
+
+            $hash_contrasena = $fila['contrasena'];
+            $rol = $fila['rol'];
+            $id = $fila['id'];
+
+        }
+
+        $acceso_valido = password_verify($contrasena, $hash_contrasena);
+
+        if($acceso_valido == TRUE){
+
+            session_start();
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['rol'] = $rol;
+            $_SESSION['id'] = $id;
+            header("location: public/prendas/index.php");
+
+        }
+        else {
+            echo "<h2>Contraseña equivocada</h2>";
+        }
+
+    }
+
+
+}
+
+    ?>
     <h1>Bienvenid@ a Nuestra Tienda</h1>
+
+
+    <div class="row">
+    <div class="col-6">
+        <form action="" method="post">
+            <div class="form-group mb-3">
+                <label class="form-label">Usuario</label>
+                <input class="form-control" type="text" name="usuario">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label">Contraseña</label>
+                <input class="form-control" type="password" name="contrasena">
+            </div>
+            <div class="form-group mb-3">
+                <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                <a href="http://localhost/06_Base_de_Datos/tienda_ropa/public/clientes/insertarClientes.php" class="btn btn-primary">Registrarse</a>
+            </div>
+        </form>
+
+    </div>
 
 </div>
 </body>

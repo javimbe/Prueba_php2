@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="http://localhost/06_Base_de_Datos/tienda_ropa/">Inicio</a>
+          <a class="nav-link active" aria-current="page" href="http://localhost/06_Base_de_Datos/tienda_ropa/util/desconectar.php">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="http://localhost/06_Base_de_Datos/tienda_ropa/public/prendas/index.php">Lista Prendas</a>

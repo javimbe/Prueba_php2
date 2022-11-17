@@ -5,6 +5,9 @@
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<?php 
+require "../../util/sesion.php";
+?>
 <?php require '../../util/database.php' ?>
 
 <div class="container">
@@ -22,8 +25,8 @@
                         <th>Categoria</th>
                         <th>Ver</th>
                         <th>Comprar</th>
-                        <th>Eliminar</th>
-                        <th>Modificar</th>
+                        <th></th>
+                        <th></th>
                         <th>Imagen</th>
                     </tr>
                 </thead>
@@ -59,12 +62,13 @@
                             
                         }
                         else{
-
+                            
+                            $id_cliente = $_SESSION['id'];
                             $id_producto = $_POST['id_producto'];
                             $cantidad_producto = $_POST['cantidad'];
                             $fecha_hoy = date("Y-m-d");
                             $sql_comprar = "INSERT INTO clientes_prendas (cliente_id, prenda_id, cantidad, fecha)
-                                            VALUES ('2', '$id_producto' , '$cantidad_producto' , '$fecha_hoy')";
+                                            VALUES ('$id_cliente', '$id_producto' , '$cantidad_producto' , '$fecha_hoy')";
 
                             if($conexion -> query($sql_comprar) == "TRUE"){
                                 ?>
@@ -142,14 +146,20 @@
                             </td>
                             <td>
                                 <form action="" method="post">
+                                    <?php
+                                    if($_SESSION['rol'] == "administrador"){ ?>
                                     <button class="btn btn-danger" type="submit">Eliminar</button>
+                                    <?php } ?>
                                     <input type="hidden" name="id_delete" value="<?php echo $id ?>">
                                     <input type="hidden" name="imagenDelete" value="<?php echo $imagen ?>">
                                 </form>
                             </td>
                             <td>
                                 <form action="modificarPrenda.php" method="get">
+                                    <?php
+                                    if($_SESSION['rol'] == "administrador"){ ?>
                                     <button class="btn btn-success" type="submit">Modificar</button>
+                                    <?php } ?>
                                     <input type="hidden" name="id" value="<?php echo $fila['id'] ?>">
                                     <input type="hidden" name="nombre" value="<?php echo $fila['nombre'] ?>">
                                     <input type="hidden" name="talla" value="<?php echo $fila['talla'] ?>">
@@ -170,7 +180,10 @@
                 </tbody>
             </table>
             <br>
+            <?php
+            if($_SESSION['rol'] == "administrador"){ ?>
             <a class="btn btn-secondary" href="insertarPrenda.php">Insertar Prendas</a>
+            <?php } ?>
         </div>
         <div class="col-3">
             <img width="100%" height="100%" src="../../resources/images/ropa.jpg">
